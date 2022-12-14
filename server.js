@@ -5,7 +5,7 @@ const logger = require('morgan');
 // Always require and configure near the top
 require('dotenv').config()
 require('./config/database')
-
+//express uses require to communicate within backend werver because it is the server
 
 const app = express();
 
@@ -18,6 +18,8 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Put API routes here, before the "catch all" route
+
+app.use('/api/users', require('./routes/api/users'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

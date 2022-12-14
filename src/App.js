@@ -8,7 +8,9 @@ import { Routes, Route } from 'react-router-dom'
 import NavBar from './component/NavBar';
 
 function App() {
-  const [user, setUser] = useState({})
+
+  //use state hook
+  const [user, setUser] = useState(null)
 // using a Ternary expressions( user ? <NewOrderPage />  :  <AuthPage /> ): Used to render one component or another.
 //Logical (&&) expressions: Used to render a component or nothing.
 
