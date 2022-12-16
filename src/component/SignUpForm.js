@@ -60,7 +60,7 @@ Let's start back in the handleSubmitmethod in SignUpForm.jsx by setting up a try
    // payload of the JSON Web Token (JWT)
    // eslint-disable-next-line no-unused-vars
    const user = await signUp(formData)
-   console.log(user)
+   this.props.setUser(user)
  } catch {
    this.setState({ error: "Sign Up Failed - Try Again"})
  }

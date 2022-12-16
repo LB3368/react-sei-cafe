@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
+import * as userService from '../utilities/user-service'
 
-export default function NavBar (props) {
+export default function NavBar ({ name, setUser }) {
+    function handleLogout () {
+        //Delegate to the users-service
+        userService.logOut()
+        setUser(null)
+    }
     /**Clicking any of the links performs client-side routing where React Router will:
 ***putting the nav about the return statement to have it show on everypage 
 Update the path in the address bar without causing the page to reload
@@ -10,6 +16,9 @@ Automatically trigger a render */
         <Link to='/orders'>Order History</Link>
         &nbsp; | &nbsp;
         <Link to='/orders/new'>New Order</Link>
+        <p>Welcome, {name}</p>
+      &nbsp;&nbsp;<Link to="" onClick={handleLogout}>Log Out</Link>
+        
     </nav>
     )
 }
