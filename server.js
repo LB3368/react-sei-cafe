@@ -20,17 +20,22 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 // Middleware to verify token and assign user object of payload to req.user.
 // Be sure to mount before routes
+//check if token and create req.user
 app.use(require('./config/checkToken'))
+
 // Put API routes here, before the "catch all" route
 
 app.use('/api/users', require('./routes/api/users'));
+
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
+app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'))
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
-
 
 // Configure to use port 3001 instead of 3000 during
 // development to avoid collision with React's dev server
